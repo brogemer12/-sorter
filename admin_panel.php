@@ -1,4 +1,4 @@
-<?php require("header.php"); require('db.php'); ?>
+<!-- <?php require("header.php"); require('db.php'); ?>
 <?php 
     $sql = 'SELECT * FROM `users`';
     $result = mysqli_query($mysqli, $sql);
@@ -30,4 +30,4 @@
                 <?php endwhile; ?>
             </table>
 
-    <?php require("footer.html"); ?>
+    <?php require("footer.html"); ?> -->

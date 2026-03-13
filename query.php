@@ -13,9 +13,9 @@
                 var_dump($sql);
                 $result = mysqli_query($mysqli, $sql);
                 if(mysqli_errno($mysqli)) echo mysqli_error();
-                header('Location: http://localhost/Simakov/Practica/SignUp.php');
+                header('Location: SignUp.php');
             }else{
-                header('Location: http://localhost/Simakov/Practica/no_correct.html');
+                header('Location: no_correct.html');
             }
         }
     }
@@ -32,7 +32,7 @@
                  '".$_SESSION['userId']."')";
         $result = mysqli_query($mysqli, $sql);
         if(mysqli_errno($mysqli)) echo mysqli_error();
-        header('Location: http://localhost/Simakov/Practica/content.php');
+        header('Location: content.php');
     }
 
     // Вход в аккаунт и проверка логина и пароля
@@ -46,13 +46,13 @@
         $row =mysqli_fetch_row($result);
 
         if($row <= 0){
-            header('Location: http://localhost/Simakov/Practica/error.html');
+            header('Location: error.html');
         }
         elseif( $row >0 ){
             $_SESSION['userId'] = $row[0];
             $_SESSION['role'] = $row[4];
             var_dump($_SESSION['role']);
-            header('Location: http://localhost/Simakov/Practica/content.php');
+            header('Location: content.php');
         }
     }
 
@@ -62,7 +62,7 @@
         // var_dump($sql);
         $result = mysqli_query($mysqli, $sql);
         if(mysqli_errno($mysqli)) echo mysqli_error();
-        header('Location: http://localhost/Simakov/Practica/admin_panel.php');
+        header('Location: admin_panel.php');
     }
 
     // удаление карточки друга
@@ -71,7 +71,7 @@
         // var_dump($sql);
         $result = mysqli_query($mysqli, $sql);
         if(mysqli_errno($mysqli)) echo mysqli_error();
-        header('Location: http://localhost/Simakov/Practica/content.php');
+        header('Location: content.php');
     }
 
     // обновление карточки друга
@@ -86,7 +86,7 @@
         WHERE id='".$_POST['id']."'";
         $result = mysqli_query($mysqli, $sql);
         if(mysqli_errno($mysqli)) echo mysqli_error();
-        header('Location: http://localhost/Simakov/Practica/content.php');
+        header('Location: content.php');
     }
     
     // Коментраии запись в таблицу coments
@@ -108,7 +108,7 @@
         var_dump($sql);
         $result = mysqli_query($mysqli, $sql);
         if(mysqli_errno($mysqli)) echo mysqli_error();
-        header('Location: http://localhost/Simakov/Practica/cards.php?id='.$_GET['id']);
+        header('Location: cards.php?id='.$_GET['id']);
     }
 
     // Удаление коментария
@@ -117,6 +117,6 @@
         var_dump($sql);
         $result = mysqli_query($mysqli, $sql);
         if(mysqli_errno($mysqli)) echo mysqli_error();
-        header('Location: http://localhost/Simakov/Practica/cards.php?id='.$_GET['id']);
+        header('Location: cards.php?id='.$_GET['id']);
     }
 ?>

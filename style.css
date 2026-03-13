@@ -57,6 +57,12 @@ textarea{
     background-color: rgb(15, 15, 15);
     color: rgb(110, 110, 110);
     font-family: "Bungee Spice";
+    width: 100%; /* Ширина по экрану */
+    height: 100vh; /* Высота по экрану */
+    box-sizing: border-box; /* Паддинги не увеличивают размер */
+    padding: 20px;
+    resize: none; /* Отключает ручное изменение размера пользователем */
+    font-size: 16px;
 }
 .bungee-spice-regular {
   font-family: "Bungee Spice", sans-serif;

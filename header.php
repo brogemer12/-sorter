@@ -1,4 +1,10 @@
 <?php session_start(); ?>
+<?php  require('db.php');?>
+<?php 
+    $sql = 'SELECT * FROM `field`'; 
+    $result = mysqli_query($mysqli, $sql);
+    if(mysqli_errno($mysqli)) echo mysqli_error();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,17 +29,27 @@
         
         <nav>
             <?php if(isset($_SESSION['role']) != 'admin' && isset($_SESSION['role']) != 'read'):?>
-                <a class="my-button dancing-script-uniquifier" href="http://localhost/Simakov/Practica/SignIn.php">Registration</a>
-                <a class="my-button dancing-script-uniquifier" href="http://localhost/Simakov/Practica/SignUp.php">Login</a>
+                <a class="my-button dancing-script-uniquifier" href="SignIn.php">Registration</a>
+                <a class="my-button dancing-script-uniquifier" href="SignUp.php">Login</a>
             <?php endif;?>
-            <?php if(isset($_SESSION['role']) == 'read' || isset($_SESSION['role']) == 'admin'):?>
-                    <a class="my-button dancing-script-uniquifier" href="http://localhost/Simakov/Practica/content.php">Read</a>
-                    <a class="my-button dancing-script-uniquifier" href="http://localhost/Simakov/Practica/create.php">Create</a>
-                    <a class="my-button dancing-script-uniquifier" href="http://localhost/Simakov/Practica/SignUp.php">Exit</a>
+            <?php if(isset($_SESSION['role']) == 'read' || isset($_SESSION['role']) == 'admin'):?>  
+                    <a class="my-button dancing-script-uniquifier" href="create.php">Create</a>
+                    <a class="my-button dancing-script-uniquifier" href="SignUp.php">Exit</a>
+                    <form action="">
+                        <?php while($row = mysqli_fetch_assoc($result)): ?>
+                            <select class="my-button dancing-script-uniquifier" id="cd-dropdown" class="cd-select" onchange="top.location=this.value">
+                              <option value="">-- Выберите город --</option>
+                              <option value="admin_panel.php"><?php echo htmlspecialchars($row['name']); ?></option>
+                              <option value="samara">Самара</option>
+                              <option value="perm">Пермь</option>
+                              <option value="novosibirsk">Новосибирск</option>
+                            </select>
+                        <?php endwhile; ?>
+                    </form>
             <?php endif;?>
             <?php if(isset($_SESSION['role'])):?>
                 <?php if($_SESSION['role'] == 'admin'):?>
-                    <a class="my-button dancing-script-uniquifier" href="http://localhost/Simakov/Practica/admin_panel.php">Admin</a>
+                    <a class="my-button dancing-script-uniquifier" href="admin_panel.php">Admin</a>
                 <?php endif;?>
             <?php endif;?>
         </nav>
