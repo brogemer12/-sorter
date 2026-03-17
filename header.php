@@ -26,34 +26,22 @@
 </head> 
 <body>
     <header>
-        
         <nav>
-            <?php if(isset($_SESSION['role']) != 'admin' && isset($_SESSION['role']) != 'read'):?>
-                <a class="my-button dancing-script-uniquifier" href="SignIn.php">Registration</a>
-                <a class="my-button dancing-script-uniquifier" href="SignUp.php">Login</a>
-            <?php endif;?>
-            <?php if(isset($_SESSION['role']) == 'read' || isset($_SESSION['role']) == 'admin'):?>  
-                    <a class="my-button dancing-script-uniquifier" href="create.php">Create</a>
-                    <a class="my-button dancing-script-uniquifier" href="SignUp.php">Exit</a>
-                    <form action="">
-                        <?php while($row = mysqli_fetch_assoc($result)): ?>
-                            <select class="my-button dancing-script-uniquifier" id="cd-dropdown" class="cd-select" onchange="top.location=this.value">
-                              <option value="">-- Выберите город --</option>
-                              <option value="admin_panel.php"><?php echo htmlspecialchars($row['name']); ?></option>
-                              <option value="samara">Самара</option>
-                              <option value="perm">Пермь</option>
-                              <option value="novosibirsk">Новосибирск</option>
-                            </select>
-                        <?php endwhile; ?>
-                    </form>
-            <?php endif;?>
-            <?php if(isset($_SESSION['role'])):?>
-                <?php if($_SESSION['role'] == 'admin'):?>
-                    <a class="my-button dancing-script-uniquifier" href="admin_panel.php">Admin</a>
-                <?php endif;?>
-            <?php endif;?>
+            <a class="my-button dancing-script-uniquifier" href="SignIn.php">Registration</a>
+            <a class="my-button dancing-script-uniquifier" href="SignUp.php">Login</a>
+            <a class="my-button dancing-script-uniquifier" href="create.php">Create</a>
+            <a class="my-button dancing-script-uniquifier" href="SignUp.php">Exit</a>
+            <form action="">
+                <select class="my-button dancing-script-uniquifier" id="cd-dropdown" class="cd-select" onchange="top.location=this.value">
+                    <option value="">-- Выберите область знаний --</option>
+                    <option value="field/Kitchen.php">Кулинария</option>
+                    <option value="field/life_hacks.php">Лайвхаки для хозяйства</option>
+                    <option value="field/Flowers.php">Растения</option>
+                    <option value="field/Animals.php">Животные</option>
+                    <option value="field/Tehnics.php">Техника</option>
+                </select>
+            </form>
         </nav>
-        
     </header>
     <main>
         <div class="container alumni-sans-pinstripe-regular">

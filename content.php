@@ -1,12 +1,12 @@
 <?php  require('db.php');?>
 <?php require('header.php');?>
 <?php 
-    $sql = 'SELECT * FROM `a`'; 
+    $sql = 'SELECT * FROM `hastag`'; 
     $result = mysqli_query($mysqli, $sql);
     if(mysqli_errno($mysqli)) echo mysqli_error();
 ?>
             <table>
-                <thead> 
+                <thead>
                     <tr>
                         <th>№</th>
                         <th>Фамилия</th>
@@ -16,7 +16,6 @@
                         <th>Email</th>
                         <th>Адрес</th>
                         <th>Посмотреть профиль</th>
-                        
                     </tr>
                 </thead>
                 <?php $i = 0;?>
