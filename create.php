@@ -14,6 +14,9 @@
         <option name="Techics" >Техника</option>
     </select>
 
+    <label for="CheckBox">Сделать приватным?</label>
+    <input type="checkbox" name="CheckBox" id="CheckBox">
+
     <button class="my-button dancing-script-uniquifier" type="submit">Submit</button>
 
 </form>

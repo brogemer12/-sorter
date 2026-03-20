@@ -20,18 +20,41 @@
         }
     }
 
-    // Добавления записи в таблицу 'hashtag'
+    // Добавления записи в таблицу 'hashtag'.
     elseif(isset($_POST["createHash"])){
-        $pattern = '/#([a-z0-9_+-]+)/i';// патерн по поиску #
+        $pattern = '/#([a-z0-9_+-]+)/i';//<---- патерн по поиску #.
         // var_dump($_POST['text']);
-        preg_match_all($pattern, $_POST['text'], $hashtags);// поиск всех совпадекний по патерну
+        preg_match_all($pattern, $_POST['text'], $hashtags);//<---- поиск всех совпадекний по патерну.
         // print_r($hashtags[1]);
-        foreach($hashtags[1] as $e){
+        foreach($hashtags[1] as $e)//<---- запись хэштегов после символа # в таблицу 'hashtag'.
+        {
             $value = $e;
             $sql = "INSERT INTO `hashtag`(`name`) VALUES ('$value')";
             $result = mysqli_query($mysqli, $sql);
             if(mysqli_errno($mysqli)) echo mysqli_error();
         }
+        header('Location: content.php');
+    }
+
+    var_dump($_POST);
+    // Добавления записи в таблицу 'hashtag'.
+    elseif(isset($_POST["createHash"])){
+        $pattern2 = '/#[a-z0-9_+-]+/i';//<---- патерн по поиску #.
+        #var_dump($_POST['text']);
+        $text = preg_replace('/#[a-z0-9_+-]+/i', '', $_POST['text']);//<---- удаление всех совпадекний по патерну.
+        #echo $_POST['text'];
+
+        if(!empty($_POST['CheckBox'])){
+            $variable = True;
+        }else{
+            $variable = False;
+        }
+
+        $sql = "INSERT INTO `sms`(`#_id`, `user_id`, `chanel_id`, `Description`, `save`) 
+        VALUES ('$_SESSION['hashteg']','$_SESSION['userId']','$_SESSION['channel']','$text','$variable')";
+
+        $result = mysqli_query($mysqli, $sql);
+        if(mysqli_errno($mysqli)) echo mysqli_error();
         header('Location: content.php');
     }
 
@@ -49,10 +72,10 @@
         }
         elseif( $row >0 ){
             $_SESSION['userId'] = $row[0];
-            $_SESSION['role'] = $row[4];
             var_dump($_SESSION['role']);
             header('Location: create.php');
         }
     }
+    elseif(isset())
 
 ?>
