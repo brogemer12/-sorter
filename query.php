@@ -32,33 +32,31 @@
             $sql = "INSERT INTO `hashtag`(`name`) VALUES ('$value')";
             $result = mysqli_query($mysqli, $sql);
             if(mysqli_errno($mysqli)) echo mysqli_error();
-            $insert = mysqli_insert_id($mysqli);
-            var_dump($insert);
         }
         // header('Location: content.php');
     }
 
-    // var_dump($_POST);
+        // var_dump($_POST);
     // Добавления записи в таблицу 'sms'.
-    // elseif(isset($_POST["createHash"])){
-    //     $pattern2 = '/#[a-z0-9_+-]+/i';//<---- патерн по поиску #.
-    //     #var_dump($_POST['text']);
-    //     $text = preg_replace('/#[a-z0-9_+-]+/i', '', $_POST['text']);//<---- удаление всех совпадекний по патерну.
-    //     #echo $_POST['text'];
+    elseif(isset($_POST["createHash"])){
+        $pattern2 = '/#[a-z0-9_+-]+/i';//<---- патерн по поиску #.
+        #var_dump($_POST['text']);
+        $text = preg_replace('/#[a-z0-9_+-]+/i', '', $_POST['text']);//<---- удаление всех совпадекний по патерну.
+        #echo $_POST['text'];
 
-    //     if(!empty($_POST['CheckBox'])){// <----- проверка галочки приватности
-    //         $variable = True;
-    //     }else{
-    //         $variable = False;
-    //     }
+        if(!empty($_POST['CheckBox2'])){// <----- проверка галочки приватности
+            $variable = True;
+        }else{
+            $variable = False;
+        }
 
-    //     $sql = "INSERT INTO `sms`(`#_id`, `user_id`, `chanel_id`, `Description`, `save`) 
-    //     VALUES ('$_SESSION['hashteg']','$_SESSION['userId']','$_SESSION['channel']','$text','$variable')";
+        // $sql = "INSERT INTO `sms`(`#_id`, `user_id`, `chanel_id`, `Description`, `save`) 
+        // VALUES ('$_SESSION['hashteg']','$_SESSION['userId']','$_SESSION['channel']','$text','$variable')";
 
-    //     $result = mysqli_query($mysqli, $sql);
-    //     if(mysqli_errno($mysqli)) echo mysqli_error();
-    //     header('Location: content.php');
-    // }
+        // $result = mysqli_query($mysqli, $sql);
+        // if(mysqli_errno($mysqli)) echo mysqli_error();
+        // header('Location: content.php');
+    }
 
     // Вход в аккаунт и проверка логина и пароля
     elseif(isset($_POST["Login"])){
@@ -77,6 +75,20 @@
             var_dump($_SESSION['role']);
             header('Location: create.php');
         }
+    }
+
+    elseif(isset($_POST["createHash"])){
+        if(!empty($_POST['CheckBox'])){// <----- проверка галочки приватности
+            $variable = True;
+        }else{
+            $variable = False;
+        }
+
+        $sql = "INSERT INTO `channel`(`name`, `Dost`) VALUES ('".$_SESSION['ChanelName']."','".$variable."')";
+
+        $result = mysqli_query($mysqli, $sql);
+        if(mysqli_errno($mysqli)) echo mysqli_error();
+        // header('Location: content.php');
     }
 
 ?>
